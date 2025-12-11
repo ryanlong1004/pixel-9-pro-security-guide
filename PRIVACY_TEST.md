@@ -1,4 +1,3 @@
-```markdown
 # Pixel 9 Pro Privacy Test Guide
 
 A structured, step-by-step privacy audit designed to validate the security posture of a **Google Pixel 9 Pro** using **Proton VPN**.  
@@ -25,11 +24,11 @@ This document can be committed directly to a GitHub repository.
 
 This guide verifies that your hardened Pixel 9 Pro setup:
 
-- Does **not** leak your real IP  
-- Does **not** leak DNS requests  
-- Does **not** expose WebRTC public IP  
-- Is not uniquely trackable  
-- Properly blocks trackers and fingerprint scripts  
+- Does **not** leak your real IP
+- Does **not** leak DNS requests
+- Does **not** expose WebRTC public IP
+- Is not uniquely trackable
+- Properly blocks trackers and fingerprint scripts
 
 The goal is to ensure that **Proton VPN + Android's Always-On VPN Mode** are functioning as intended.
 
@@ -39,16 +38,16 @@ The goal is to ensure that **Proton VPN + Android's Always-On VPN Mode** are fun
 
 Before starting, ensure the following:
 
-- Proton VPN is **connected**  
-- Protocol is set to **WireGuard**  
+- Proton VPN is **connected**
+- Protocol is set to **WireGuard**
 - Android settings have:
-  - **Always-on VPN** enabled  
-  - **Block connections without VPN** enabled  
+  - **Always-on VPN** enabled
+  - **Block connections without VPN** enabled
 - Split tunneling is **disabled**
 
 Optional but recommended:
 
-- Clear browser cache  
+- Clear browser cache
 - Close all apps except your browser
 
 ---
@@ -59,17 +58,17 @@ Optional but recommended:
 
 Record the following:
 
-- Displayed **public IP**  
-- Displayed **country**  
-- Number of IP addresses detected  
-- Any IPv6 address shown  
+- Displayed **public IP**
+- Displayed **country**
+- Number of IP addresses detected
+- Any IPv6 address shown
 
 **Expected Safe Result:**
 
-- Only **one IP**  
-- Belongs to **Proton VPN**  
-- Location = VPN region, not your real location  
-- No IPv6 unless Proton provides one  
+- Only **one IP**
+- Belongs to **Proton VPN**
+- Location = VPN region, not your real location
+- No IPv6 unless Proton provides one
 
 ---
 
@@ -81,20 +80,20 @@ https://ipleak.net
 
 Record:
 
-- Number of DNS servers shown  
-- Country of each DNS server  
+- Number of DNS servers shown
+- Country of each DNS server
 - Whether any DNS servers belong to:
-  - Your ISP  
-  - Google (8.8.8.8)  
-  - Cloudflare (1.1.1.1)  
-  - AT&T / Verizon  
-  - Any local hostname  
+  - Your ISP
+  - Google (8.8.8.8)
+  - Cloudflare (1.1.1.1)
+  - AT&T / Verizon
+  - Any local hostname
 
 **Expected Safe Result:**
 
-- All DNS servers belong to **Proton** or anonymized servers  
-- Zero DNS entries tied to your ISP  
-- No domestic DNS servers revealing your region  
+- All DNS servers belong to **Proton** or anonymized servers
+- Zero DNS entries tied to your ISP
+- No domestic DNS servers revealing your region
 
 ---
 
@@ -104,14 +103,14 @@ Record:
 
 Record:
 
-- **Local IP addresses** (usually 192.168.x.x or 10.x.x.x)  
-- **Public IP address** (if shown)  
+- **Local IP addresses** (usually 192.168.x.x or 10.x.x.x)
+- **Public IP address** (if shown)
 
 **Expected Safe Result:**
 
-- Local IP = private range only  
-- Public IP = VPN IP OR empty  
-- No exposure of your real IPv4 or IPv6 
+- Local IP = private range only
+- Public IP = VPN IP OR empty
+- No exposure of your real IPv4 or IPv6
 
 ---
 
@@ -121,15 +120,15 @@ Record:
 
 Steps:
 
-1. Tap **"View my fingerprint"**  
+1. Tap **"View my fingerprint"**
 2. Record:
    - **Entropy score**
    - **Number of detectable attributes**
 
 **Expected Safe Result:**
 
-- Not extremely unique  
-- Browser fingerprint appears **similar** to other mobile users  
+- Not extremely unique
+- Browser fingerprint appears **similar** to other mobile users
 - No catastrophic uniqueness (e.g., 1 in 1M)
 
 ---
@@ -140,7 +139,7 @@ Steps:
 
 Run the test and record:
 
-- Tracker blocking score  
+- Tracker blocking score
 - Fingerprinting result:
   - `Unique`
   - `Not unique`
@@ -148,7 +147,7 @@ Run the test and record:
 
 **Expected Safe Result:**
 
-- Tracker blocking = **Strong**  
+- Tracker blocking = **Strong**
 - Fingerprinting = **Not unique** or **Randomized**
 
 ---
@@ -156,27 +155,32 @@ Run the test and record:
 ## How to Interpret Results
 
 ### ✔ Pass
+
 If your results match expected safe ranges, your Pixel 9 Pro is:
 
-- Leak-proof  
-- Fingerprint-hardened  
-- VPN-enforced  
-- Tracker-resistant  
+- Leak-proof
+- Fingerprint-hardened
+- VPN-enforced
+- Tracker-resistant
 
 ### ⚠ Partial Pass
+
 If:
-- You see **multiple IPs**  
-- DNS shows your ISP  
-- WebRTC shows a public IP  
-- Fingerprinting returns *Highly Unique*
+
+- You see **multiple IPs**
+- DNS shows your ISP
+- WebRTC shows a public IP
+- Fingerprinting returns _Highly Unique_
 
 Then the device needs further tuning.
 
 ### ❌ Fail
+
 If:
-- Real IP appears  
-- DNS leaks occur  
-- Traffic flows when VPN disconnects  
+
+- Real IP appears
+- DNS leaks occur
+- Traffic flows when VPN disconnects
 
 This indicates a misconfiguration.
 
@@ -186,14 +190,14 @@ This indicates a misconfiguration.
 
 Depending on findings:
 
-- Enforce stronger **VPN kill-switch** behavior  
-- Harden browser settings  
-- Disable WebRTC through browser flags  
-- Add a privacy-focused browser  
-- Remove apps leaking identifiers  
-- Adjust Private DNS  
-- Reset Proton VPN settings  
-- Re-run DNS and IP leak tests  
+- Enforce stronger **VPN kill-switch** behavior
+- Harden browser settings
+- Disable WebRTC through browser flags
+- Add a privacy-focused browser
+- Remove apps leaking identifiers
+- Adjust Private DNS
+- Reset Proton VPN settings
+- Re-run DNS and IP leak tests
 
 ---
 
@@ -251,4 +255,3 @@ Fingerprinting: Not unique
 ---
 
 _Last updated: {{UPDATE_DATE_HERE}}_
-```

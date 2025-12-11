@@ -116,13 +116,13 @@ Record:
 
 ## Step 4 — Fingerprinting Test
 
-**URL:** https://amiunique.org/fp
+**URL:** https://amiunique.org/
 
 Steps:
 
-1. Tap **"View my fingerprint"**
+1. Tap **"View my browser fingerprint"**
 2. Record:
-   - **Entropy score**
+   - **Uniqueness score**
    - **Number of detectable attributes**
 
 **Expected Safe Result:**
@@ -130,6 +130,8 @@ Steps:
 - Not extremely unique
 - Browser fingerprint appears **similar** to other mobile users
 - No catastrophic uniqueness (e.g., 1 in 1M)
+
+**⚠ Note:** Mobile devices often show as unique due to hardware/software combinations. This is a **known limitation** - VPNs mask IP but don't prevent browser fingerprinting.
 
 ---
 
@@ -188,16 +190,69 @@ This indicates a misconfiguration.
 
 ## Follow-Up Actions
 
-Depending on findings:
+### If You Have IP/DNS Leaks
 
 - Enforce stronger **VPN kill-switch** behavior
-- Harden browser settings
-- Disable WebRTC through browser flags
-- Add a privacy-focused browser
-- Remove apps leaking identifiers
-- Adjust Private DNS
-- Reset Proton VPN settings
+- Verify Always-on VPN is enabled: `Settings → Network & Internet → VPN → Proton VPN → Always-on VPN`
+- Enable **Block connections without VPN**
+- Disable split tunneling in Proton VPN app
+- Adjust Private DNS to `off` or `dns.quad9.net`
+- Reset Proton VPN settings and reconnect
 - Re-run DNS and IP leak tests
+
+### If You Have a Unique Fingerprint
+
+Browser fingerprinting happens at the client level and **cannot be prevented by VPN alone**. To reduce uniqueness:
+
+#### 1. **Switch to a Privacy-Focused Browser**
+   - **Brave Browser** - Built-in fingerprint randomization
+   - **Firefox Focus** - Minimal tracking, auto-clears history
+   - **Bromite** - Chromium-based with privacy patches
+   - **Tor Browser** (extreme) - Maximum anonymity
+
+#### 2. **Harden Chrome/Chromium**
+   - Disable JavaScript for sensitive sites:
+     - `Settings → Site settings → JavaScript → Block`
+   - Disable third-party cookies:
+     - `Settings → Site settings → Cookies → Block third-party cookies`
+   - Clear cookies/cache regularly
+
+#### 3. **Install Content Blockers (Firefox)**
+   - **uBlock Origin** - Blocks trackers and ads
+   - **Privacy Badger** - Learns and blocks invisible trackers
+   - **CanvasBlocker** - Prevents canvas fingerprinting
+
+#### 4. **Disable Fingerprinting Vectors**
+   - Turn off location services for browsers:
+     - `Settings → Apps → [Browser] → Permissions → Location → Don't allow`
+   - Disable motion sensors (if supported):
+     - `Settings → Privacy → Motion sensors → Off`
+   - Use standard time zone (UTC) in browser if possible
+
+#### 5. **Standardize Your Configuration**
+   - Use common screen resolutions (avoid rare aspect ratios)
+   - Disable custom fonts
+   - Avoid browser extensions (they can be fingerprinted)
+   - Use default language settings (English US is most common)
+
+#### 6. **Advanced: Browser Flags (Chrome/Brave)**
+   Navigate to `chrome://flags` or `brave://flags`:
+   - Disable **WebGL**: Search "WebGL" and disable
+   - Disable **WebRTC**: Install extension like "WebRTC Leak Shield"
+   - Enable **Do Not Track**: `Settings → Privacy and security → Send a 'Do Not Track' request`
+
+#### 7. **Accept the Trade-off**
+   - **Reality check**: Perfect anonymity requires Tor Browser with strict settings
+   - Mobile fingerprinting is **very difficult** to eliminate completely
+   - Focus on IP/DNS protection (which VPN handles) and tracker blocking
+   - Unique fingerprint ≠ immediate threat (depends on your threat model)
+
+### General Maintenance
+
+- Remove apps leaking identifiers (check app permissions)
+- Review Location History: `Google Account → Data & Privacy → Location History`
+- Disable ad personalization: `Google Account → Data & Privacy → Ad settings`
+- Run these tests monthly to detect configuration drift
 
 ---
 

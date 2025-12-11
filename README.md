@@ -1,4 +1,3 @@
-```markdown
 # Pixel 9 Pro Security Hardening Guide
 
 A practical, reproducible checklist for hardening a **Google Pixel 9 Pro** with **Proton VPN** and privacy-focused settings.
@@ -23,9 +22,9 @@ A practical, reproducible checklist for hardening a **Google Pixel 9 Pro** with 
 
 ## Device Overview
 
-- **Device:** Google Pixel 9 Pro  
-- **OS:** Stock Android (Pixel build)  
-- **Primary account:** Google account with 2FA  
+- **Device:** Google Pixel 9 Pro
+- **OS:** Stock Android (Pixel build)
+- **Primary account:** Google account with 2FA
 - **VPN provider:** Proton VPN (paid or free tier)
 
 This document assumes a clean or mostly-clean device with no root or custom ROM.
@@ -38,14 +37,14 @@ Goal: prevent unauthorized physical access and shoulder-surfing.
 
 ### Settings
 
-- [x] Set **screen lock** to a **6+ digit PIN**  
+- [x] Set **screen lock** to a **6+ digit PIN**
   - `Settings → Security & privacy → Device lock → Screen lock → PIN`
 - [x] **Disable pattern unlock**
-- [x] Enable **fingerprint unlock** as a convenience layer on top of PIN  
+- [x] Enable **fingerprint unlock** as a convenience layer on top of PIN
   - `Settings → Security & privacy → Device lock → Fingerprint Unlock`
-- [x] Set **Screen lock after sleep** to **Immediately** or **5 seconds**  
+- [x] Set **Screen lock after sleep** to **Immediately** or **5 seconds**
   - `Settings → Security & privacy → Device lock → Lock after screen timeout`
-- [x] Hide sensitive notifications on lock screen  
+- [x] Hide sensitive notifications on lock screen
   - `Settings → Notifications → Notifications on lock screen → Hide sensitive content`
 - [x] Disable **tap-to-show notification content** if available (optional hardening)
 
@@ -57,11 +56,11 @@ Goal: harden the identity that unlocks cloud backups, email, and device access.
 
 ### Settings
 
-- [x] Enable **2-Step Verification (2FA)** on primary Google account  
+- [x] Enable **2-Step Verification (2FA)** on primary Google account
   - Use **security keys** or **Google Prompt** over SMS-based codes.
-- [x] Review and clean up **recovery methods**  
+- [x] Review and clean up **recovery methods**
   - Remove old phone numbers and secondary emails no longer in use.
-- [x] Review **Security Activity** and **Devices**  
+- [x] Review **Security Activity** and **Devices**
   - Revoke access for devices or sessions you don’t recognize.
 - [x] Turn on **Advanced Protection Program** (optional, high-security users)
 
@@ -74,23 +73,23 @@ Goal: enforce encrypted traffic, DNS privacy, and minimal leaks.
 ### Proton VPN App Settings
 
 - [x] **Sign in** with Proton account (e.g., `ryan@rlong.dev`)
-- [x] Enable **NetShield**  
+- [x] Enable **NetShield**
   - `Proton VPN → Settings → NetShield → Malware + Trackers`
-- [x] Disable **Split tunneling**  
+- [x] Disable **Split tunneling**
   - `Proton VPN → Settings → Split tunneling → Off`
-- [x] Enable **Kill switch**  
+- [x] Enable **Kill switch**
   - `Proton VPN → Settings → Kill switch → On`
-- [x] Set **Default connection** to `Fastest country` or a preferred region  
+- [x] Set **Default connection** to `Fastest country` or a preferred region
   - `Proton VPN → Settings → Default connection → Fastest country`
-- [x] Set **Protocol** to **WireGuard**  
-  - `Proton VPN → Settings → Protocol → WireGuard`  
+- [x] Set **Protocol** to **WireGuard**
+  - `Proton VPN → Settings → Protocol → WireGuard`
   - (Avoid “Smart (auto)” if you want deterministic behavior.)
 
 ---
 
 ## Android VPN (Always-On) Configuration
 
-Goal: prevent *any* traffic from leaving the device outside of the VPN tunnel.
+Goal: prevent _any_ traffic from leaving the device outside of the VPN tunnel.
 
 ### System Settings
 
@@ -111,27 +110,27 @@ Goal: reduce risk from insecure cell networks, Wi-Fi spoofing, and passive track
 
 ### Mobile Network
 
-- [x] Disable **2G** (prevents downgrade attacks)  
+- [x] Disable **2G** (prevents downgrade attacks)
   - `Settings → Network & internet → SIMs → Allow 2G → Off`
 - [x] Prefer **4G/5G** automatic (default)
 
 ### Wi-Fi
 
-- [x] Disable auto-connect to **open networks**  
+- [x] Disable auto-connect to **open networks**
   - `Settings → Network & internet → Internet → Network preferences`
-- [x] Enable **MAC address randomization**  
+- [x] Enable **MAC address randomization**
   - `Wi-Fi network → Privacy → Use randomized MAC`
 
 ### Bluetooth & Scanning
 
 - [x] Turn **Bluetooth off** when not in use
-- [x] Disable **Bluetooth scanning** (and optionally Wi-Fi scanning)  
+- [x] Disable **Bluetooth scanning** (and optionally Wi-Fi scanning)
   - `Settings → Location → Location services → Wi-Fi scanning / Bluetooth scanning → Off`
 
 ### Private DNS (Optional)
 
-- [x] Configure **Private DNS** (optional extra DNS privacy)  
-  - `Settings → Network & internet → Private DNS → Private DNS provider hostname`  
+- [x] Configure **Private DNS** (optional extra DNS privacy)
+  - `Settings → Network & internet → Private DNS → Private DNS provider hostname`
   - Example: `dns.proton.me` or `dns.quad9.net`
 
 > Note: When Proton VPN is active, its own DNS is used; Private DNS is mostly a fallback for non-VPN scenarios.
@@ -191,9 +190,9 @@ Goal: protect data even if the device is lost, stolen, or confiscated.
 ### Device
 
 - [x] Confirm full-disk encryption (enabled by default on Pixel)
-- [x] Enable **Find My Device**  
+- [x] Enable **Find My Device**
   - `Settings → Security & privacy → Find My Device`
-- [x] Enable **Lockdown Mode** for high-risk situations  
+- [x] Enable **Lockdown Mode** for high-risk situations
   - Press and hold power button → **Lockdown** (disables biometrics until PIN is entered)
 - [x] Optionally: enable **Auto factory reset** after multiple failed unlock attempts (if available in region/build.)
 
@@ -213,9 +212,9 @@ Goal: confirm that VPN, DNS, and privacy controls behave as expected.
 
 With Proton VPN **connected** and **always-on** enabled:
 
-- [x] Visit an IP-check service (e.g., `https://ipleak.net` or similar)  
+- [x] Visit an IP-check service (e.g., `https://ipleak.net` or similar)
   - Confirm:
-    - IP address = Proton VPN exit node  
+    - IP address = Proton VPN exit node
     - Location = VPN country, not real location
 - [x] Confirm **DNS servers** belong to Proton or privacy-respecting DNS provider.
 - [x] Temporarily disconnect Proton VPN:
@@ -247,4 +246,3 @@ Ideas for further hardening beyond this baseline:
 ---
 
 _Last updated: {{UPDATE_DATE_HERE}}_
-```
